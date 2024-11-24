@@ -5,8 +5,8 @@
 }
 body{
     font-family : Roboto, Arial;
-    /* background : linear-gradient(90deg, hsl(0, 2%, 81%), hsl(0, 6%, 94%))
-} */}
+    background : linear-gradient(90deg, hsl(0, 5%, 89%), hsl(0, 6%, 94%))
+} 
 h1{
     text-align : center;
     margin : 0.5em 0;
@@ -87,6 +87,8 @@ dialog{
     max-width : 30em;
     display : none;
     animation : closeModal 1000ms ease-out;
+    position: fixed; 
+    top : 30%
 }
 
  dialog[open]{
@@ -117,4 +119,34 @@ dialog{
         opacity : 0;
         transform: translateY(30px);
     }
+}
+
+.modal::backdrop{
+    background: linear-gradient(90deg, hsla(0, 6%, 42%, 0.647), rgba(192, 43, 43, 0.603));
+    transition: opacity 0.5s ease;
+}
+dialog[open]::backdrop {
+    opacity : 0.6;
+}
+.card-container{
+    display : grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center;
+    padding : 1.5em;
+    gap : 1em;
+}
+.card{
+    margin : 0 auto;
+    height : 10rem;
+    padding : 1rem;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items : center;
+    box-shadow:  0 0 1em hsla(0, 1%, 31%, 0.701);
+    border-radius: 0.5rem;
+    z-index : -1999;
+}
+.card > h5{
+    margin-bottom : 0.5em;
 }
