@@ -145,8 +145,8 @@ dialog[open]::backdrop {
     align-items : center;
     box-shadow:  0 0 1em hsla(0, 1%, 31%, 0.701);
     border-radius: 0.5rem;
-    z-index : -1999;
-}
+} 
+
 .card > h5{
     margin-bottom : 0.5em;
 }
