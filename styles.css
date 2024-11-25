@@ -150,3 +150,16 @@ dialog[open]::backdrop {
 .card > h5{
     margin-bottom : 0.5em;
 }
+.read{
+    background-color: red;
+}
+.unread{
+    background-color: green;
+}
+
+.read:hover{
+    background-color: hsla(0, 100%, 50%, 0.695);
+}
+.unread:hover{
+    background-color: hsla(120, 100%, 25%, 0.695);
+}
