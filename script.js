@@ -1,8 +1,9 @@
 const modal = document.querySelector(".modal");
 const openbtn = document.querySelector(".open-modal");
 const closeModal = document.querySelector(".close-modal");
-const form = document.querySelector("form");
+const form = document.querySelector(".form-container");
 const cardContainer = document.querySelector(".card-container")
+const submit = document.querySelector(".submit")
 
 openbtn.addEventListener("click", () =>{
     modal.showModal()
@@ -14,10 +15,10 @@ closeModal.addEventListener("click", () =>{
 
 
 
+
 const myLibrary = [];
 
-function Book(author, title, pages, read) {
-  this.id = Date.now()
+function Book(title, author,  pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -47,8 +48,9 @@ function createCards(item, index){
     const readbtn = createElements("button", item.read);
     readbtn.classList.add(`${item.read}`)
     buttondiv.appendChild(readbtn)
+    
 
-    const dltbtn = createElements("button", "Del");
+    const dltbtn = createElements("button", "Delete");
     dltbtn.classList.add("delete");
     buttondiv.appendChild(dltbtn);
 
@@ -59,11 +61,10 @@ function createCards(item, index){
 
    
     readbtn.addEventListener("click", () =>{
-        toggleReadBtn(readbtn)
+        toggleReadBtn(index, readbtn)
     })
     dltbtn.addEventListener("click", () =>{
         deleteElements(index)
-        alert("deleted")
     })
 
 
@@ -77,16 +78,48 @@ function createElements (element, text){
     return el
 }
 
-function toggleReadBtn(button){
+function toggleReadBtn(index, button){
     const getClass = button.className === "read" ? "unread" : "read";
     button.className = getClass;
     button.textContent = getClass;
+    myLibrary[index].read = getClass;
+
+    if(button.className === "read"){
+        button.style.backgroundColor = "red"
+    }else(
+        button.style.backgroundColor = "green"
+    )
+    
 }
 function deleteElements(index){
     myLibrary.splice(index, 1);
     cardContainer.replaceChildren();
     myLibrary.forEach(createCards)
 }
+
+form.addEventListener("submit", (e) =>{
+    e.preventDefault()
+
+    cardContainer.replaceChildren()
+
+    const title = document.querySelector("#title").value
+    const author = document.querySelector("#author").value
+    const pages = document.querySelector("#pages").value
+    let read = document.querySelector("#read").checked
+
+    if(read){
+        read = "read"
+    }else{
+        read = "unread"
+    }
+
+    addBookToLibrary(title, author, pages, read);
+
+    myLibrary.forEach(createCards)
+    form.reset()
+    modal.close()
+
+})
 
 
  
